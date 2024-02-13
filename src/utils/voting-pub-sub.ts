@@ -1,4 +1,7 @@
-type Message = { pollOptionId: string; votes: number };
+type voteUpdate = { pollOptionId: string; votes: number }
+type Notification = { pollId: string, message: string }
+
+type Message = voteUpdate | Notification;
 type Subscriber = (message: Message) => void;
 
 class VotingPubSub {

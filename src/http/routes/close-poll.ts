@@ -36,6 +36,10 @@ export async function closePoll(app: FastifyInstance) {
         .send({ pollId, errorMessage: "This poll is already closed." });
     }
 
+    voting.publish(pollId, {
+      pollId,
+      message: "The poll has been closed.",
+    });
 
     return reply.status(200).send({ pollId, message: "Poll closed." });
   });
